@@ -3,9 +3,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-include_once "vendor/phpmailer/phpmailer/src/Exception.php";
-include_once "vendor/phpmailer/phpmailer/src/PHPMailer.php";
-include_once "vendor/phpmailer/phpmailer/src/SMTP.php";
+include_once "vendor/autoload.php";
 
 
 
@@ -30,10 +28,10 @@ function EnviaEmail($emaildestinatario, $nomedestinatario, $assunto, $mensagem)
 	//$mail->SMTPSecure = "ssl";
 	$mail->SMTPDebug = 2;
 	//$mail->SMTPAutoTLS = false;
-	$mail->SMTPSecure = "tls";
+	$mail->SMTPSecure = "ssl";
         //Yahoo -> smtp.mail.yahoo.com
 	$mail->Host = "smtp.dominio.com.br";
-	$mail->Port = 587;
+	$mail->Port = 465;
 	//$mail->From = "username@dominio.com.br";
 	$mail->Username = "username@dominio.com.br";
 	$mail->Password = "";
