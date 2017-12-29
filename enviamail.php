@@ -34,7 +34,7 @@ function EnviaEmail($emaildestinatario, $nomedestinatario, $assunto, $mensagem)
         //Yahoo -> smtp.mail.yahoo.com
 	$mail->Host = "smtp.dominio.com.br";
 	$mail->Port = 587;
-	//$mail->From = "no-reply@pisco.net.br";
+	//$mail->From = "username@dominio.com.br";
 	$mail->Username = "username@dominio.com.br";
 	$mail->Password = "";
 	$mail->SetFrom("username@dominio.com.br","NOME");
