@@ -13,6 +13,17 @@ function EnviaEmail($emaildestinatario, $nomedestinatario, $assunto, $mensagem)
 {
 	$mail = new PHPMailer();
 	//$mail->SetLanguage("br", "phpmailer/phpmailer.lang-pt_br.php");
+
+	/*No PHP 5.6 precisa adicionar o array SMTPOptions*/
+	
+	$mail->SMTPOptions = array(
+		'ssl' => array(
+		'verify_peer' => false,
+		'verify_peer_name' => false,
+		'allow_self_signed' => true
+		)
+	);
+
 	$mail->IsSMTP();
 	$mail->Charset = "UTF-8";
 	$mail->SMTPAuth = true;
@@ -23,6 +34,7 @@ function EnviaEmail($emaildestinatario, $nomedestinatario, $assunto, $mensagem)
         //Yahoo -> smtp.mail.yahoo.com
 	$mail->Host = "smtp.dominio.com.br";
 	$mail->Port = 587;
+	//$mail->From = "no-reply@pisco.net.br";
 	$mail->Username = "username@dominio.com.br";
 	$mail->Password = "";
 	$mail->SetFrom("username@dominio.com.br","NOME");
