@@ -12,8 +12,6 @@ function EnviaEmail($emaildestinatario, $nomedestinatario, $assunto, $mensagem)
 	$mail = new PHPMailer();
 	//$mail->SetLanguage("br", "phpmailer/phpmailer.lang-pt_br.php");
 
-	/*No PHP 5.6 precisa adicionar o array SMTPOptions*/
-	
 	$mail->SMTPOptions = array(
 		'ssl' => array(
 		'verify_peer' => false,
@@ -23,13 +21,15 @@ function EnviaEmail($emaildestinatario, $nomedestinatario, $assunto, $mensagem)
 	);
 
 	$mail->IsSMTP();
-	$mail->Charset = "UTF-8";
+	$mail->CharSet = "UTF-8";
+	$mail->ContentType = "Content-Type: text/html";
+	$mail->Encoding = "base64";
 	$mail->SMTPAuth = true;
-	//$mail->SMTPSecure = "ssl";
+
 	$mail->SMTPDebug = 2;
 	//$mail->SMTPAutoTLS = false;
 	$mail->SMTPSecure = "ssl";
-        //Yahoo -> smtp.mail.yahoo.com
+
 	$mail->Host = "smtp.dominio.com.br";
 	$mail->Port = 465;
 	//$mail->From = "username@dominio.com.br";
@@ -43,7 +43,12 @@ function EnviaEmail($emaildestinatario, $nomedestinatario, $assunto, $mensagem)
 	$mail->Subject = $assunto;
 	$mail->MsgHTML($mensagem);
 
+	//e-mail em cópia
+	//$mail->addCC("username@dominio.com", "NOME");
+	//e-mail em cópia oculta
+	//$mail->addBCC("username@dominio.com", "NOME");
+
 	if($mail->Send())
 		return 1;
 	else return 0;
-}   
+}
